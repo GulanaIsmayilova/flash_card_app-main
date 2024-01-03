@@ -80,7 +80,16 @@ export default function FlashCardsPage({ flashcards }) {
           <option value="Last Modified">Last Modified</option>
         </select>
       </div>
+      
       <div>
+        Search by Text:{' '}
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Enter search text"
+        />
+      </div>
 
       <div className="card-grid">
         {sortedFlashcards.map((flashcard) => (
