@@ -26,7 +26,19 @@ function App() {
               };
             })
           );
-
+          }else {
+          console.error('Unexpected response format:', response);
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 429) {
+          console.error('Rate limit exceeded. Please try again later.');
+        } else {
+          console.error('Error fetching data:', error.message);
+        }
+      }
+    };
         
-                
+    fetchData();
+       }, []);
+      }
 export default App;
