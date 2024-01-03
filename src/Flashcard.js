@@ -1,9 +1,18 @@
 import React, { useRef, useState, useEffect } from 'react';
+import EditFlashcardModal from './EditFlashcardModal';
 
-export default function Flashcard({ flashcard, updateFlashcardStatus, onCardModified }) {
+export default function Flashcard({
+  flashcard,
+  updateFlashcardStatus,
+  onCardModified,
+  onEdit,
+  onDelete,
+  searchTerm, 
+}) {
   const [flip, setFlip] = useState(false);
   const [height, setHeight] = useState('initial');
   const [statusMessage, setStatusMessage] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
 
   const frontEl = useRef();
   const backEl = useRef();
@@ -20,25 +29,22 @@ export default function Flashcard({ flashcard, updateFlashcardStatus, onCardModi
     return () => window.removeEventListener('resize', setMaxHeight);
   }, []);
 
+
   const handleStatusChange = (newStatus) => {
     updateFlashcardStatus(flashcard.id, newStatus);
     onCardModified(flashcard.id);
+    
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
 
-    let message = '';
-    switch (newStatus) {
-      case 'Learned':
-        message = 'Status: Learned';
-        break;
-      case 'Want to Learn':
-        message = 'Status: Want to Learn';
-        break;
-      case 'Noted':
-        message = 'Status: Noted';
-        break;
-      default:
-        message = '';
-    }
-    setStatusMessage(message);
+  const handleDelete = () => {
+    onDelete(flashcard.id);
+  };
+
+  const handleSaveEdit = (editedQuestion, editedAnswer) => {
+    onEdit(flashcard.id, editedQuestion, editedAnswer);
+    setIsEditing(false);
   };
 
   return (
@@ -48,22 +54,33 @@ export default function Flashcard({ flashcard, updateFlashcardStatus, onCardModi
       onClick={() => setFlip(!flip)}
     >
       <div className="front" ref={frontEl}>
-        {flashcard.question}
-        <div className="flashcard-options">
-          {flashcard.options.map((option) => (
-            <div className="flashcard-option" key={option}>
-              {option}
+        {isEditing ? (
+          <EditFlashcardModal
+            flashcard={flashcard}
+            onSave={handleSaveEdit}
+            onClose={() => setIsEditing(false)}
+          />
+        ) : (
+          <>
+            {flashcard.question}
+            <div className="flashcard-options">
+              {flashcard.options.map((option) => (
+                <div className="flashcard-option" key={option}>
+                  {option}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <p>Last Modified: {flashcard.lastModified}</p>
-        <div className="status-buttons">
-          <button onClick={() => handleStatusChange('Learned')}>Learned</button>
-          <button onClick={() => handleStatusChange('Want to Learn')}>Want to Learn</button>
-          <button onClick={() => handleStatusChange('Noted')}>Noted</button>
-        </div>
-
-        {statusMessage && <p>{statusMessage}</p>}
+            <p>Last Modified: {flashcard.lastModified}</p>
+            <div className="status-buttons">
+              <button onClick={() => handleStatusChange('Learned')}>Learned</button>
+              <button onClick={() => handleStatusChange('Want to Learn')}>Want to Learn</button>
+              <button onClick={() => handleStatusChange('Noted')}>Noted</button>
+            </div>
+            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
+            {statusMessage && <p>{statusMessage}</p>}
+          </>
+        )}
       </div>
       <div className="back" ref={backEl}>
         {flashcard.answer}

@@ -73,10 +73,7 @@ function App() {
     <div className="container">
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={<HomePage />}
-          />
+          <Route path="/" element={<HomePage />} />
           <Route
             path="/flashcards"
             element={<FlashCardsPage flashcards={flashcards} updateFlashcard={updateFlashcard} />}
