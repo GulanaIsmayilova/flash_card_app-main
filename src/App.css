@@ -24,3 +24,6 @@ body {
     border: none;
     cursor: pointer;
   }
+  .btn:hover {
+    background-color: hsl(200, 100%, 40%);
+  }
