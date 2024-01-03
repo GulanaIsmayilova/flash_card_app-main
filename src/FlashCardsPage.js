@@ -25,6 +25,11 @@ export default function FlashCardsPage({ flashcards }) {
     console.log(`Deleting flashcard with ID ${cardId}`);
   };
 
+  const handleSaveEdit = (cardId, editedQuestion, editedAnswer) => {
+    console.log(`Saving edited flashcard with ID ${cardId}: ${editedQuestion}, ${editedAnswer}`);
+    setEditingFlashcard(null);
+  };
+
   const handleFilterChange = (newStatus) => {
     setFilterStatus(newStatus);
   };
@@ -73,14 +78,13 @@ export default function FlashCardsPage({ flashcards }) {
         </select>
       </div>
       <div>
-      Sort by:{' '}
+        Sort by:{' '}
         <select value={sortOption} onChange={(e) => handleSortChange(e.target.value)}>
           <option value="Alphabetical Order">Alphabetical Order</option>
           <option value="Status">Status</option>
           <option value="Last Modified">Last Modified</option>
         </select>
       </div>
-      
       <div>
         Search by Text:{' '}
         <input
@@ -90,7 +94,6 @@ export default function FlashCardsPage({ flashcards }) {
           placeholder="Enter search text"
         />
       </div>
-
       <div className="card-grid">
         {sortedFlashcards.map((flashcard) => (
           <Flashcard
@@ -102,6 +105,13 @@ export default function FlashCardsPage({ flashcards }) {
             onDelete={handleDelete}
           />
         ))}
+        {editingFlashcard && (
+          <EditFlashcardModal
+            flashcard={editingFlashcard}
+            onSave={handleSaveEdit}
+            onClose={() => setEditingFlashcard(null)}
+          />
+        )}
       </div>
     </div>
   );
