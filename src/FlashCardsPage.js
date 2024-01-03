@@ -5,24 +5,22 @@ export default function FlashCardsPage({ flashcards }) {
   const [modifiedCards, setModifiedCards] = useState([]);
 
   const updateFlashcardStatus = (cardId, newStatus) => {
-    console.log(`Updating card ${cardId} status to ${newStatus}`);
-
-  
-    setModifiedCards([...modifiedCards, cardId]);
+    setModifiedCards((prevModifiedCards) => [...prevModifiedCards, cardId]);
+  };
+  const onCardModified = (cardId) => {
+    console.log(`Card with ID ${cardId} was modified.`);
   };
 
   return (
     <div className="card-grid">
-      {flashcards && flashcards.map((flashcard) => (
+      {flashcards.map((flashcard) => (
         <Flashcard
-          flashcard={flashcard}
           key={flashcard.id}
+          flashcard={flashcard}
           updateFlashcardStatus={updateFlashcardStatus}
+          onCardModified={onCardModified}
         />
       ))}
-      {modifiedCards.length > 0 && (
-        <p>Modified Cards: {modifiedCards.join(', ')}</p>
-      )}
     </div>
   );
 }

@@ -3,38 +3,44 @@ import React, { useRef, useState, useEffect } from 'react';
 export default function Flashcard({ flashcard, updateFlashcardStatus, onCardModified }) {
   const [flip, setFlip] = useState(false);
   const [height, setHeight] = useState('initial');
+  const [statusMessage, setStatusMessage] = useState('');
+
   const frontEl = useRef();
   const backEl = useRef();
 
   function setMaxHeight() {
-    try {
-      const frontHeight = frontEl.current.getBoundingClientRect().height;
-      const backHeight = backEl.current.getBoundingClientRect().height;
-      setHeight(Math.max(frontHeight, backHeight, 100));
-    } catch (error) {
-      console.error('Error setting max height:', error);
-    }
+    const frontHeight = frontEl.current.getBoundingClientRect().height;
+    const backHeight = backEl.current.getBoundingClientRect().height;
+    setHeight(Math.max(frontHeight, backHeight, 100));
   }
 
   useEffect(setMaxHeight, [flashcard.question, flashcard.answer, flashcard.options]);
   useEffect(() => {
-    try {
-      window.addEventListener('resize', setMaxHeight);
-      return () => window.removeEventListener('resize', setMaxHeight);
-    } catch (error) {
-      console.error('Error adding/removing resize event listener:', error);
-    }
+    window.addEventListener('resize', setMaxHeight);
+    return () => window.removeEventListener('resize', setMaxHeight);
   }, []);
 
   const handleStatusChange = (newStatus) => {
-    try {
-      updateFlashcardStatus(flashcard.id, newStatus);
-      onCardModified(flashcard.id);
-    } catch (error) {
-      console.error('Error updating flashcard status:', error);
+    updateFlashcardStatus(flashcard.id, newStatus);
+    onCardModified(flashcard.id);
+
+    let message = '';
+    switch (newStatus) {
+      case 'Learned':
+        message = 'Status: Learned';
+        break;
+      case 'Want to Learn':
+        message = 'Status: Want to Learn';
+        break;
+      case 'Noted':
+        message = 'Status: Noted';
+        break;
+      default:
+        message = '';
     }
+    setStatusMessage(message);
   };
-  
+
   return (
     <div
       className={`card ${flip ? 'flip' : ''}`}
@@ -56,6 +62,7 @@ export default function Flashcard({ flashcard, updateFlashcardStatus, onCardModi
           <button onClick={() => handleStatusChange('Want to Learn')}>Want to Learn</button>
           <button onClick={() => handleStatusChange('Noted')}>Noted</button>
         </div>
+        {statusMessage && <p>{statusMessage}</p>}
       </div>
       <div className="back" ref={backEl}>
         {flashcard.answer}
