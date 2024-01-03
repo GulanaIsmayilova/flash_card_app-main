@@ -43,7 +43,7 @@ body {
     transition: 150ms;
     ;
   }
-  
+
   .card:hover {
     --translate-y: -2px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
@@ -52,4 +52,14 @@ body {
   .card.flip {
     --rotate-y: 180deg;
   }
+
+  .card .front,
+  .card .back {
+    padding: 1rem;
+  }
+  
+  .card .back {
+    transform: rotateY(180deg);
+  }
+  
 
