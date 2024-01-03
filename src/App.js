@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://opentdb.com/api.php?amount=10');
+        const response = await axios.get('https://opentdb.com/api.php?amount=100');
 
         if (response && response.data && response.data.results) {
           setFlashcards(

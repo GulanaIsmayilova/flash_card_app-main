@@ -43,6 +43,19 @@
     transform: scale(1.05);
   }
   
+  .card.flip {
+    --rotate-y: 180deg;
+    transform: perspective(1000px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
+  }
+  
+  .card.flip .front {
+    transform: rotateY(180deg);
+  }
+  
+  .card.flip .back {
+    transform: rotateY(0deg); 
+  }
+  
   .card .front,
   .card .back {
     padding: 20px;
@@ -55,20 +68,16 @@
   
   .card .front {
     background-color: #fff;
+    --rotate-y: 0deg;
   }
   
   .card .back {
     background-color: #f9f9f9;
+    --rotate-y: 180deg;
   }
   
   .flashcard-options {
-    display: flex;
     flex-wrap: wrap;
-  }
-  
-  .flashcard-option {
-    background-color: #007bff;
-    color: #fff;
     padding: 8px;
     margin: 4px;
     border-radius: 4px;
@@ -78,7 +87,7 @@
   .edit-delete-buttons {
     display: none;
     position: absolute;
-    top: 10px;
+    top: 5px;
     right: 10px;
   }
   

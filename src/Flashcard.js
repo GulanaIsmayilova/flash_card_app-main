@@ -70,6 +70,7 @@ export default function Flashcard({
       style={{ height: height }}
       onClick={() => setFlip(!flip)}
     >
+      
       <div className="front" ref={frontEl}>
         {isEditing ? (
           <EditFlashcardModal
