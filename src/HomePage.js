@@ -31,8 +31,15 @@ const HomePage = () => {
               <button className="cta-button">View Project</button>
             </a>
           </div>
-       
-  
+        ))}
+      </section>
+      <footer>
+        <p>Explore more projects and flashcards!</p>
+        <button className="cta-button" onClick={handleGoToFlashcards}>
+          Go to Flashcards
+        </button>
+      </footer>
+    </div>
   );
 };
 
