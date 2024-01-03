@@ -18,6 +18,19 @@ const ContactForm = () => {
         body: JSON.stringify({ subject, email, content }),
       });
 
+      if (response.ok) {
+        setSubmissionStatus('success');
+        console.log('Message submitted successfully!');
+      } else {
+        setSubmissionStatus('error');
+        console.error('Failed to submit message.');
+      }
+    } catch (error) {
+      setSubmissionStatus('error');
+      console.error('Error during message submission:', error);
+    }
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -40,6 +53,9 @@ const ContactForm = () => {
       </form>
       {submissionStatus === 'success' && (
         <p style={{ color: 'green' }}>Message submitted successfully!</p>
+      )}
+      {submissionStatus === 'error' && (
+        <p style={{ color: 'red' }}>Failed to submit message. Please try again.</p>
       )}
     </div>
   );
