@@ -11,7 +11,15 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await axios.get('https://opentdb.com/api.php?amount=10');
-
+        if (response && response.data && response.data.results) {
+          setFlashcards(
+            response.data.results.map((questionItem, index) => {
+              const answer = questionItem.incorrect_answer;
+              const options = [
+                ...questionItem.correct_answers.map((a)) =>(a),
+                answer,
+              ];
+return()
         
                 
 export default App;
