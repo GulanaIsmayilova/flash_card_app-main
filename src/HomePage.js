@@ -6,8 +6,20 @@ import { Link } from 'react-router-dom';
 const projects = [
   {
     id: 1,
-    title: 'FlashCard Application',
-    description: 'Flash Card App for educational purposes, where users can create, view, edit, and delete flash cards. Each card contains information on both sides and can be used for learning or memorization.',
+    title: 'Flash Card Application',
+    description: 'Flash Card App used for educational purposes, where users can create, view, edit, and delete flash cards. Each card contains information on both sides and can be used for learning or memorization.',
+    link: 'https://github.com/GulanaIsmayilova/flash_card_app-main.git',
+  },
+  {
+    id: 2,
+    title: 'Product Catalog Application',
+    description: 'Flash Card App used for educational purposes, where users can create, view, edit, and delete flash cards. Each card contains information on both sides and can be used for learning or memorization.',
+    link: 'https://github.com/GulanaIsmayilova/Assignment2_.git',
+  },
+  {
+    id: 3,
+    title: 'Personal Website',
+    description: 'Flash Card App used for educational purposes, where users can create, view, edit, and delete flash cards. Each card contains information on both sides and can be used for learning or memorization.',
     link: 'https://github.com/GulanaIsmayilova/flash_card_app-main.git',
   },
 ];
@@ -40,6 +52,7 @@ const HomePage = () => {
         <button className="cta-button" onClick={handleGoToFlashcards}>
           Go to Flashcards
         </button>
+
          <Link to="/contact">
           <button className="cta-button">Contact Us</button>
         </Link>
