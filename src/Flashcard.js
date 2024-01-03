@@ -62,6 +62,7 @@ export default function Flashcard({ flashcard, updateFlashcardStatus, onCardModi
           <button onClick={() => handleStatusChange('Want to Learn')}>Want to Learn</button>
           <button onClick={() => handleStatusChange('Noted')}>Noted</button>
         </div>
+
         {statusMessage && <p>{statusMessage}</p>}
       </div>
       <div className="back" ref={backEl}>

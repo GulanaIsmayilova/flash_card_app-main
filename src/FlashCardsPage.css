@@ -1,0 +1,15 @@
+.card-container {
+    position: relative;
+  }
+  
+  .card-actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+  }
+  
+  .card-container:hover .card-actions {
+    display: flex;
+    flex-direction: column;
+  }
