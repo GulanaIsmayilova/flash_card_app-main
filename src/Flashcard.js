@@ -33,7 +33,24 @@ export default function Flashcard({
   const handleStatusChange = (newStatus) => {
     updateFlashcardStatus(flashcard.id, newStatus);
     onCardModified(flashcard.id);
-    
+
+    let message = '';
+    switch (newStatus) {
+      case 'Learned':
+        message = 'Status: Learned';
+        break;
+      case 'Want to Learn':
+        message = 'Status: Want to Learn';
+        break;
+      case 'Noted':
+        message = 'Status: Noted';
+        break;
+      default:
+        message = '';
+    }
+    setStatusMessage(message);
+  };
+
   const handleEdit = () => {
     setIsEditing(true);
   };
