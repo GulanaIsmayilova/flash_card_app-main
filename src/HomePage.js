@@ -23,8 +23,16 @@ const HomePage = () => {
         <h1>Welcome to Flash Card App</h1>
       </header>
       <section className="projects-list">
-      </section>
-    </div>
+        {projects.map((project) => (
+          <div className="project" key={project.id}>
+            <h2>{project.title}</h2>
+            <p>{project.description}</p>
+            <a href={project.link} target="_blank" rel="noopener noreferrer">
+              <button className="cta-button">View Project</button>
+            </a>
+          </div>
+       
+  
   );
 };
 
