@@ -30,6 +30,11 @@ body {
     border: none;
     cursor: pointer;
   }
+
+  .btn:hover {
+    background-color: hsl(200, 100%, 40%);
+  }
+  
   .card-grid {
     display: grid;
     align-items: center;

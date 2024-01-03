@@ -21,14 +21,17 @@ function App() {
                 ...questionItem.incorrect_answers.map((a) => decodeString(a)),
                 answer,
               ];
-              return {
+
+              const newFlashcard = {
                 id: `${index}-${Date.now()}`,
                 question: decodeString(questionItem.question),
                 answer: answer,
                 options: options.sort(() => Math.random() - 0.5),
-                lastModified: new Date().toISOString(), 
-                status: 'Want to Learn', 
+                lastModified: new Date().toISOString(),
+                status: 'Want to Learn',
               };
+
+              return newFlashcard;
             })
           );
         } else {
@@ -52,13 +55,32 @@ function App() {
     return textArea.value;
   }
 
+  const updateFlashcard = (id, newStatus) => {
+    setFlashcards((prevFlashcards) =>
+      prevFlashcards.map((flashcard) =>
+        flashcard.id === id
+          ? {
+              ...flashcard,
+              status: newStatus,
+              lastModified: new Date().toISOString(),
+            }
+          : flashcard
+      )
+    );
+  };
+
   return (
     <div className="container">
       <Router>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/flashcards" element={<FlashCardsPage flashcards={flashcards} />} />
-
+          <Route
+            path="/"
+            element={<HomePage />}
+          />
+          <Route
+            path="/flashcards"
+            element={<FlashCardsPage flashcards={flashcards} updateFlashcard={updateFlashcard} />}
+          />
         </Routes>
       </Router>
     </div>

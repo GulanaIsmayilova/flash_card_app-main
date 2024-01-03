@@ -1,4 +1,5 @@
 import React from 'react';
+import FlashCardsPage from './FlashCardsPage';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 
