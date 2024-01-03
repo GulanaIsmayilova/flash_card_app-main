@@ -16,17 +16,7 @@ body {
     padding: 0 1.5rem;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, .3);
   }
-  .btn {
-    background-color: hsl(200, 100%, 50%);
-    color: white;
-    padding: .5em 1em;
-    border-radius: .3em;
-    border: none;
-    cursor: pointer;
-  }
-  .btn:hover {
-    background-color: hsl(200, 100%, 40%);
-  }
+  
   .card-grid {
     display: grid;
     align-items: center;
@@ -44,6 +34,22 @@ body {
     ;
   }
 
+  .flashcard-options {
+    margin-top: .5rem;
+  }
+
+  .btn {
+    background-color: hsl(200, 100%, 50%);
+    color: white;
+    padding: .5em 1em;
+    border-radius: .3em;
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background-color: hsl(200, 100%, 40%);
+  }
+  
   .card:hover {
     --translate-y: -2px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
