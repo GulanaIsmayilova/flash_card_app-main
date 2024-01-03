@@ -73,6 +73,14 @@ export default function FlashCardsPage({ flashcards }) {
         </select>
       </div>
       <div>
+      Sort by:{' '}
+        <select value={sortOption} onChange={(e) => handleSortChange(e.target.value)}>
+          <option value="Alphabetical Order">Alphabetical Order</option>
+          <option value="Status">Status</option>
+          <option value="Last Modified">Last Modified</option>
+        </select>
+      </div>
+      <div>
 
       <div className="card-grid">
         {sortedFlashcards.map((flashcard) => (
