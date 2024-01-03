@@ -29,6 +29,23 @@ export default function FlashCardsPage({ flashcards }) {
     setFilterStatus(newStatus);
   };
 
+  const handleSortChange = (newSortOption) => {
+    setSortOption(newSortOption);
+  };
+
+  const getSortedFlashcards = (unsortedFlashcards) => {
+    switch (sortOption) {
+      case 'Alphabetical Order':
+        return unsortedFlashcards.slice().sort((a, b) => a.question.localeCompare(b.question));
+      case 'Last Modified':
+        return unsortedFlashcards.slice().sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified));
+      case 'Status':
+        return unsortedFlashcards.slice().sort((a, b) => a.status.localeCompare(b.status));
+      default:
+        return unsortedFlashcards;
+    }
+  };
+
   const filteredFlashcards = flashcards.filter((flashcard) => {
     if (filterStatus === 'All') {
       return true;
