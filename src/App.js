@@ -19,7 +19,14 @@ function App() {
                 ...questionItem.correct_answers.map((a)) =>(a),
                 answer,
               ];
-return()
+    return {
+                id: `${index}-${Date.now()}`,
+                question: questionItem.question,
+                answer: answer,
+              };
+            })
+          );
+
         
                 
 export default App;
