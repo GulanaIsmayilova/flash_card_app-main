@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Flashcard from './Flashcard';
 import EditFlashcardModal from './EditFlashcardModal';
+import './FlashCardsPage.css';
 
 export default function FlashCardsPage({ flashcards }) {
   const [modifiedCards, setModifiedCards] = useState([]);
