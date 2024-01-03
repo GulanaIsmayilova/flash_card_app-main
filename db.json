@@ -1,0 +1,31 @@
+{
+  "flashcards": [
+    {
+      "id": "1",
+      "question": "Sample Question 1",
+      "answer": "Sample Answer 1",
+      "status": "Want to Learn"
+    },
+    {
+      "id": "2",
+      "question": "Sample Question 2",
+      "answer": "Sample Answer 2",
+      "status": "Learned"
+    }
+  ],
+  "messages": [
+    {
+      "subject": "",
+      "email": "",
+      "content": "",
+      "id": 1
+    },
+    {},
+    {
+      "subject": "Subject",
+      "email": "gismayilova14174@ada.edu.az",
+      "content": "Content",
+      "id": 2
+    }
+  ]
+}

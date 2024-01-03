@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FlashCardsPage from './FlashCardsPage';
 import HomePage from './HomePage';
+import ContactForm from './ContactForm';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -78,6 +79,7 @@ function App() {
             path="/flashcards"
             element={<FlashCardsPage flashcards={flashcards} updateFlashcard={updateFlashcard} />}
           />
+          <Route path="/contact" element={<ContactForm />} />
         </Routes>
       </Router>
     </div>

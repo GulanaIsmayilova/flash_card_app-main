@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
+import { Link } from 'react-router-dom';
 
 const projects = [
   {
@@ -39,6 +40,9 @@ const HomePage = () => {
         <button className="cta-button" onClick={handleGoToFlashcards}>
           Go to Flashcards
         </button>
+         <Link to="/contact">
+          <button className="cta-button">Contact Us</button>
+        </Link>
       </footer>
     </div>
   );
