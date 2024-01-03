@@ -41,4 +41,23 @@ function App() {
     fetchData();
        }, []);
       }
+
+      function decodeString(str) {
+        const textArea = document.createElement('textarea');
+        textArea.innerHTML = str;
+        return textArea.value;
+      }
+      
+      return (
+    <div className="container">
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/flashcards" element={<FlashCardsPage flashcards={flashcards} />} />
+
+        </Routes>
+      </Router>
+    </div>
+  );
+
 export default App;
