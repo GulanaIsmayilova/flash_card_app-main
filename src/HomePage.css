@@ -8,3 +8,11 @@ body {
     align-items: center;
     min-height: 100vh;
   }
+
+  header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+  }
