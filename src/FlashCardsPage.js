@@ -17,6 +17,14 @@ export default function FlashCardsPage({ flashcards }) {
     console.log(`Card with ID ${cardId} was modified.`);
   };
 
+  const handleEdit = (cardId, editedQuestion, editedAnswer) => {
+    console.log(`Editing flashcard with ID ${cardId}: ${editedQuestion}, ${editedAnswer}`);
+  };
+
+  const handleDelete = (cardId) => {
+    console.log(`Deleting flashcard with ID ${cardId}`);
+  };
+
   const filteredFlashcards = flashcards.filter((flashcard) => {
     if (filterStatus === 'All') {
       return true;
