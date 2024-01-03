@@ -25,6 +25,10 @@ export default function FlashCardsPage({ flashcards }) {
     console.log(`Deleting flashcard with ID ${cardId}`);
   };
 
+  const handleFilterChange = (newStatus) => {
+    setFilterStatus(newStatus);
+  };
+
   const filteredFlashcards = flashcards.filter((flashcard) => {
     if (filterStatus === 'All') {
       return true;
