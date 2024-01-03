@@ -17,6 +17,13 @@ export default function FlashCardsPage({ flashcards }) {
     console.log(`Card with ID ${cardId} was modified.`);
   };
 
+  const filteredFlashcards = flashcards.filter((flashcard) => {
+    if (filterStatus === 'All') {
+      return true;
+    } else {
+      return flashcard.status === filterStatus;
+    }
+  });
 
   const searchedFlashcards = filteredFlashcards.filter((flashcard) => {
     const searchRegex = new RegExp(searchTerm, 'i');
