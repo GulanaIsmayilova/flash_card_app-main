@@ -65,6 +65,7 @@ export default function Flashcard({
 
   const handleClick = () => {
     setFlip((prevFlip) => !prevFlip);
+    
 };
 
   return (
