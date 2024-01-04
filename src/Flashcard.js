@@ -80,7 +80,7 @@ export default function Flashcard({
           <>
             {flashcard.question}
             <div className="flashcard-options">
-              {flashcard.options.map((option) => (
+              {flashcard.options && flashcard.options.map((option) => (
                 <div className="flashcard-option" key={option}>
                   {option}
                 </div>
@@ -99,8 +99,13 @@ export default function Flashcard({
         )}
       </div>
       <div className="back" ref={backEl}>
-        {flashcard.answer}
+        {flip && (
+          <>
+            <p>Answer:</p>
+            {flashcard.answer}
+          </>
+        )}
       </div>
     </div>
   );
-}
+        }

@@ -45,7 +45,6 @@
   
   .card.flip {
     --rotate-y: 180deg;
-    transform: perspective(1000px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
   }
   
   .card .front,
@@ -56,16 +55,16 @@
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
+    backface-visibility: hidden;
   }
   
   .card .front {
     background-color: #fff;
-    --rotate-y: 0deg;
   }
   
   .card .back {
     background-color: #f9f9f9;
-    --rotate-y: 180deg;
+    transform: rotateY(180deg);
   }
   
   .flashcard-options {
@@ -129,3 +128,4 @@
     background-color: #f44336;
     color: #fff;
   }
+  
