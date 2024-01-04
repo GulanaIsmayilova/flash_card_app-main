@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import Flashcard from './Flashcard';
 import EditFlashcardModal from './EditFlashcardModal';
+import AddFlashcardModal from './AddFlashcardModal';
 import './FlashCardsPage.css';
 
-export default function FlashCardsPage({ flashcards }) {
+export default function FlashCardsPage({ flashcards, updateFlashcard, removeFlashcard, addNewCard }) {
   const [modifiedCards, setModifiedCards] = useState([]);
   const [editingFlashcard, setEditingFlashcard] = useState(null);
+  const [addingFlashcard, setAddingFlashcard] = useState(false);
   const [filterStatus, setFilterStatus] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOption, setSortOption] = useState('Last Modified');
@@ -19,15 +21,15 @@ export default function FlashCardsPage({ flashcards }) {
   };
 
   const handleEdit = (cardId, editedQuestion, editedAnswer) => {
-    console.log(`Editing flashcard with ID ${cardId}: ${editedQuestion}, ${editedAnswer}`);
+    setEditingFlashcard({ id: cardId, question: editedQuestion, answer: editedAnswer });
   };
 
   const handleDelete = (cardId) => {
-    console.log(`Deleting flashcard with ID ${cardId}`);
+    removeFlashcard(cardId);
   };
 
   const handleSaveEdit = (cardId, editedQuestion, editedAnswer) => {
-    console.log(`Saving edited flashcard with ID ${cardId}: ${editedQuestion}, ${editedAnswer}`);
+    updateFlashcard(cardId, editedQuestion, editedAnswer);
     setEditingFlashcard(null);
   };
 
@@ -37,6 +39,19 @@ export default function FlashCardsPage({ flashcards }) {
 
   const handleSortChange = (newSortOption) => {
     setSortOption(newSortOption);
+  };
+
+  const handleAddFlashcard = () => {
+    setAddingFlashcard(true);
+  };
+
+  const handleCancelAddFlashcard = () => {
+    setAddingFlashcard(false);
+  };
+
+  const handleSaveAddFlashcard = (newFlashcard) => {
+    addNewCard(newFlashcard);
+    setAddingFlashcard(false);
   };
 
   const getSortedFlashcards = (unsortedFlashcards) => {
@@ -95,6 +110,9 @@ export default function FlashCardsPage({ flashcards }) {
           placeholder="Enter search text"
         />
       </div>
+      <div>
+        <button onClick={handleAddFlashcard}>Add Flashcard</button>
+      </div>
       <div className="card-grid">
         {sortedFlashcards.map((flashcard) => (
           <Flashcard
@@ -102,16 +120,19 @@ export default function FlashCardsPage({ flashcards }) {
             flashcard={flashcard}
             updateFlashcardStatus={updateFlashcardStatus}
             onCardModified={onCardModified}
-            onEdit={(flashcard) => setEditingFlashcard(flashcard)}
-            onDelete={handleDelete}
+            onEdit={(editedQuestion, editedAnswer) => handleEdit(flashcard.id, editedQuestion, editedAnswer)}
+            onDelete={() => handleDelete(flashcard.id)}
           />
         ))}
         {editingFlashcard && (
           <EditFlashcardModal
             flashcard={editingFlashcard}
-            onSave={handleSaveEdit}
+            onSave={(editedQuestion, editedAnswer) => handleSaveEdit(editingFlashcard.id, editedQuestion, editedAnswer)}
             onClose={() => setEditingFlashcard(null)}
           />
+        )}
+        {addingFlashcard && (
+          <AddFlashcardModal onSave={handleSaveAddFlashcard} onCancel={handleCancelAddFlashcard} />
         )}
       </div>
     </div>

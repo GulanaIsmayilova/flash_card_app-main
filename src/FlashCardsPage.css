@@ -48,14 +48,6 @@
     transform: perspective(1000px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
   }
   
-  .card.flip .front {
-    transform: rotateY(180deg);
-  }
-  
-  .card.flip .back {
-    transform: rotateY(0deg); 
-  }
-  
   .card .front,
   .card .back {
     padding: 20px;
@@ -77,7 +69,14 @@
   }
   
   .flashcard-options {
+    display: flex;
     flex-wrap: wrap;
+    padding: 8px;
+    margin: 4px;
+    border-radius: 4px;
+  }
+  
+  .flashcard-option {
     padding: 8px;
     margin: 4px;
     border-radius: 4px;
@@ -87,7 +86,7 @@
   .edit-delete-buttons {
     display: none;
     position: absolute;
-    top: 5px;
+    top: 10px;
     right: 10px;
   }
   

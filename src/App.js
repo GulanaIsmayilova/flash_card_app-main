@@ -70,6 +70,14 @@ function App() {
     );
   };
 
+  const removeFlashcard = (id) => {
+    setFlashcards((prevFlashcards) => prevFlashcards.filter((flashcard) => flashcard.id !== id));
+  };
+
+  const addNewCard = (newCard) => {
+    setFlashcards((prevFlashcards) => [...prevFlashcards, newCard]);
+  };
+
   return (
     <div className="container">
       <Router>
@@ -77,7 +85,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route
             path="/flashcards"
-            element={<FlashCardsPage flashcards={flashcards} updateFlashcard={updateFlashcard} />}
+            element={<FlashCardsPage flashcards={flashcards} updateFlashcard={updateFlashcard} removeFlashcard={removeFlashcard} addNewCard={addNewCard} />}
           />
           <Route path="/contact" element={<ContactForm />} />
         </Routes>

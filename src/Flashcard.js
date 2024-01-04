@@ -7,7 +7,7 @@ export default function Flashcard({
   onCardModified,
   onEdit,
   onDelete,
-  searchTerm, 
+  searchTerm,
 }) {
   const [flip, setFlip] = useState(false);
   const [height, setHeight] = useState('initial');
@@ -28,7 +28,6 @@ export default function Flashcard({
     window.addEventListener('resize', setMaxHeight);
     return () => window.removeEventListener('resize', setMaxHeight);
   }, []);
-
 
   const handleStatusChange = (newStatus) => {
     updateFlashcardStatus(flashcard.id, newStatus);
@@ -64,13 +63,12 @@ export default function Flashcard({
     setIsEditing(false);
   };
 
+  const handleClick = () => {
+    setFlip((prevFlip) => !prevFlip);
+};
+
   return (
-    <div
-      className={`card ${flip ? 'flip' : ''}`}
-      style={{ height: height }}
-      onClick={() => setFlip(!flip)}
-    >
-      
+    <div className={`card ${flip ? 'flip' : ''}`} style={{ height: height }} onClick={handleClick}>
       <div className="front" ref={frontEl}>
         {isEditing ? (
           <EditFlashcardModal
@@ -81,28 +79,28 @@ export default function Flashcard({
         ) : (
           <>
             {flashcard.question}
-            <div className="flashcard-options">
-              {flashcard.options.map((option) => (
-                <div className="flashcard-option" key={option}>
-                  {option}
-                </div>
-              ))}
-            </div>
-            <p>Last Modified: {flashcard.lastModified}</p>
-            <div className="status-buttons">
-              <button onClick={() => handleStatusChange('Learned')}>Learned</button>
-              <button onClick={() => handleStatusChange('Want to Learn')}>Want to Learn</button>
-              <button onClick={() => handleStatusChange('Noted')}>Noted</button>
-            </div>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
-            {statusMessage && <p>{statusMessage}</p>}
-          </>
-        )}
-      </div>
-      <div className="back" ref={backEl}>
-        {flashcard.answer}
-      </div>
+          <div className="flashcard-options">
+            {flashcard.options && flashcard.options.map((option) => (
+              <div className="flashcard-option" key={option}>
+                {option}
+              </div>
+            ))}
+          </div>
+          <p>Last Modified: {flashcard.lastModified}</p>
+          <div className="status-buttons">
+            <button onClick={() => handleStatusChange('Learned')}>Learned</button>
+            <button onClick={() => handleStatusChange('Want to Learn')}>Want to Learn</button>
+            <button onClick={() => handleStatusChange('Noted')}>Noted</button>
+          </div>
+          <button onClick={handleEdit}>Edit</button>
+          <button onClick={handleDelete}>Delete</button>
+          {statusMessage && <p>{statusMessage}</p>}
+        </>
+      )}
     </div>
+    <div className="back" ref={backEl}>
+      {flip && flashcard.answer}
+    </div>
+  </div>
   );
 }
