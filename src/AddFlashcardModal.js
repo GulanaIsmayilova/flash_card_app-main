@@ -9,6 +9,17 @@ export default function AddFlashcardModal({ onSave, onCancel }) {
     onCancel();
   };
 
+  const modalStyle = {
+    position: 'fixed',
+    top: '20px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    background: 'white',
+    padding: '20px',
+    border: '1px solid #ccc',
+    zIndex: '1000',
+  };
+
   return (
     <div style={modalStyle}>
       <h2>Add New Flashcard</h2>
