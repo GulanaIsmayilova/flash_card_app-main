@@ -13,13 +13,13 @@ const projects = [
   {
     id: 2,
     title: 'Product Catalog Application',
-    description: 'Flash Card App used for educational purposes, where users can create, view, edit, and delete flash cards. Each card contains information on both sides and can be used for learning or memorization.',
+    description: 'The Product Catalog Application is designed to provide users with an intuitive platform to explore and manage product information.',
     link: 'https://github.com/GulanaIsmayilova/Assignment2_.git',
   },
   {
     id: 3,
     title: 'Personal Website',
-    description: 'Flash Card App used for educational purposes, where users can create, view, edit, and delete flash cards. Each card contains information on both sides and can be used for learning or memorization.',
+    description: 'The Personal Website serves as an online hub for individuals to showcase their portfolio, achievements, and personal brand. It is a dynamic platform that allows users to present a professional online presence and connect with their audience.',
     link: 'https://github.com/GulanaIsmayilova/flash_card_app-main.git',
   },
 ];
