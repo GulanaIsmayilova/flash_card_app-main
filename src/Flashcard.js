@@ -64,9 +64,8 @@ export default function Flashcard({
   };
 
   const handleClick = () => {
-    setFlip((prevFlip) => !prevFlip);
-    
-};
+    setFlip(!flip);
+  };
 
   return (
     <div className={`card ${flip ? 'flip' : ''}`} style={{ height: height }} onClick={handleClick}>
@@ -80,28 +79,28 @@ export default function Flashcard({
         ) : (
           <>
             {flashcard.question}
-          <div className="flashcard-options">
-            {flashcard.options && flashcard.options.map((option) => (
-              <div className="flashcard-option" key={option}>
-                {option}
-              </div>
-            ))}
-          </div>
-          <p>Last Modified: {flashcard.lastModified}</p>
-          <div className="status-buttons">
-            <button onClick={() => handleStatusChange('Learned')}>Learned</button>
-            <button onClick={() => handleStatusChange('Want to Learn')}>Want to Learn</button>
-            <button onClick={() => handleStatusChange('Noted')}>Noted</button>
-          </div>
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
-          {statusMessage && <p>{statusMessage}</p>}
-        </>
-      )}
+            <div className="flashcard-options">
+              {flashcard.options.map((option) => (
+                <div className="flashcard-option" key={option}>
+                  {option}
+                </div>
+              ))}
+            </div>
+            <p>Last Modified: {flashcard.lastModified}</p>
+            <div className="status-buttons">
+              <button onClick={() => handleStatusChange('Learned')}>Learned</button>
+              <button onClick={() => handleStatusChange('Want to Learn')}>Want to Learn</button>
+              <button onClick={() => handleStatusChange('Noted')}>Noted</button>
+            </div>
+            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
+            {statusMessage && <p>{statusMessage}</p>}
+          </>
+        )}
+      </div>
+      <div className="back" ref={backEl}>
+        {flashcard.answer}
+      </div>
     </div>
-    <div className="back" ref={backEl}>
-      {flip && flashcard.answer}
-    </div>
-  </div>
   );
 }
