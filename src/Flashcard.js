@@ -69,7 +69,7 @@ export default function Flashcard({
 
   return (
     <div className={`card ${flip ? 'flip' : ''}`} style={{ height: height }} onClick={handleClick}>
-      <div className="front" ref={frontEl}>
+    <div className="front" ref={frontEl}>
         {isEditing ? (
           <EditFlashcardModal
             flashcard={flashcard}
